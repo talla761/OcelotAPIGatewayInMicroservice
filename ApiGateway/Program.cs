@@ -33,7 +33,7 @@ var app = builder.Build();
 
 app.UseCors();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseMiddleware<InterceptionMiddleware>();
 
