@@ -5,11 +5,11 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Patient", "Patient\Patient.csproj", "{B0F0D232-8422-4116-9575-D3A788A22B1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity", "Identity\Identity.csproj", "{C22F4164-EA80-46EE-BAF1-5DF5D92C8C11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityApi", "Identity\IdentityApi.csproj", "{C22F4164-EA80-46EE-BAF1-5DF5D92C8C11}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{9A185BA9-CE69-4C7B-BDF5-6BFC25162F1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{0BA4E796-60ED-4F15-8DA6-FC0079861134}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{0BA4E796-60ED-4F15-8DA6-FC0079861134}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

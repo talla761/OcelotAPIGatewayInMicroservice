@@ -35,6 +35,7 @@ app.UseCors();
 
 //app.UseHttpsRedirection();
 
+app.UseMiddleware<TokenCheckerMiddleware>();
 app.UseMiddleware<InterceptionMiddleware>();
 
 app.UseAuthorization();
