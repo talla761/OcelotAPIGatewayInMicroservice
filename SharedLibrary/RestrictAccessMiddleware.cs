@@ -10,7 +10,7 @@ namespace SharedLibrary
             if (string.IsNullOrEmpty(referrer))
             {
                 context.Response.StatusCode = StatusCodes.Status403Forbidden;
-                await context.Response.WriteAsync("Hmmm, Can't reach this page");
+                await context.Response.WriteAsync("Hmmm, je n'arrive pas à accéder à cette page");
                 return;
             }
             else
