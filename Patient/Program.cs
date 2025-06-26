@@ -35,12 +35,12 @@ builder.Services.AddAuthentication(options =>
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        //ValidateIssuer = true,
-        //ValidateAudience = true,
+        ValidateIssuer = true,
+        ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        //ValidIssuer = issuer,
-        //ValidAudience = audience,
+        ValidIssuer = issuer,
+        ValidAudience = audience,
         IssuerSigningKey = new SymmetricSecurityKey(key)
     };
 });
@@ -73,7 +73,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.UseMiddleware<RestrictAccessMiddleware>();
+//app.UseMiddleware<RestrictAccessMiddleware>();
 
 app.MapControllers();
 

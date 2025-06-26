@@ -56,56 +56,79 @@ namespace IdentityApi.Controllers
                 return StatusCode(500, "Le compte utilisateur est invalide (Email ou UserName manquant).");
             }
 
-            // Si l'utilisateur est authentifié, générer un JWT
+            // Construire les revendications (claims)
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserName), // Par exemple, ajouter un nom d'utilisateur comme revendication
-                new Claim(ClaimTypes.Email, user.Email),   // Ajouter l'email comme revendication
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) // Ajouter un identifiant unique (JTI)
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            // Générer le token JWT avec la clé secrète
+            // Lire les paramètres JWT depuis la configuration
             var secret = _config["Jwt:Key"];
-            if (string.IsNullOrWhiteSpace(secret))
-                throw new InvalidOperationException("La clé secrète JWT est manquante dans la configuration.");
+            var issuer = _config["Jwt:Issuer"];
+            var audience = _config["Jwt:Audience"];
 
-            var token = _jwtAuthenticationRepository.GenerateToken(secret, claims);
+            if (string.IsNullOrWhiteSpace(secret) || string.IsNullOrWhiteSpace(issuer) || string.IsNullOrWhiteSpace(audience))
+            {
+                throw new InvalidOperationException("Les paramètres JWT (Key, Issuer, Audience) sont manquants dans la configuration.");
+            }
 
-            // Retourner le token JWT à l'utilisateur
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            // Durée de validité
+            var expires = DateTime.UtcNow.AddMinutes(60);
+
+            // Génération du token JWT complet
+            var tokenDescriptor = new JwtSecurityToken(
+                issuer: issuer,
+                audience: audience,
+                claims: claims,
+                expires: expires,
+                signingCredentials: creds
+            );
+
+            // Sérialiser le token
+            var jwt = new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
+
+            // Retourner le token JWT
             return Ok(new
             {
-                token,
-                expiration = DateTime.UtcNow.AddMinutes(60),
+                token = jwt,
+                expiration = expires,
                 user = new { user.Id, user.Email, user.UserName }
             });
         }
 
-        //private string GenerateToken(string getEmail)
-        //{
-        //    var key = Encoding.UTF8.GetBytes(config["Authentication:Key"]!);
-        //    var securityKey = new SymmetricSecurityKey(key);
-        //    var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-        //    var claims = new[] { new Claim(ClaimTypes.Email, getEmail!) };
 
-        //    var token = new JwtSecurityToken(
-        //        issuer: config["Authentication:Issuer"],
-        //        audience: config["Authentication:Audience"],
-        //        claims: claims,
-        //        expires: null,
-        //        signingCredentials: credential);
+            //private string GenerateToken(string getEmail)
+            //{
+            //    var key = Encoding.UTF8.GetBytes(config["Authentication:Key"]!);
+            //    var securityKey = new SymmetricSecurityKey(key);
+            //    var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            //    var claims = new[] { new Claim(ClaimTypes.Email, getEmail!) };
 
-        //    return new JwtSecurityTokenHandler().WriteToken(token);
-        //}
+            //    var token = new JwtSecurityToken(
+            //        issuer: config["Authentication:Issuer"],
+            //        audience: config["Authentication:Audience"],
+            //        claims: claims,
+            //        expires: null,
+            //        signingCredentials: credential);
 
-        //api/account/register/{email}/{password}
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
-        {
-            var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
-                return Ok("Utilisateur créé !");
-            return BadRequest(result.Errors);
+            //    return new JwtSecurityTokenHandler().WriteToken(token);
+            //}
+
+            //api/account/register/{email}/{password}
+            [HttpPost("register")]
+            public async Task<IActionResult> Register([FromBody] RegisterModel model)
+            {
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                    return Ok("Utilisateur créé !");
+                return BadRequest(result.Errors);
+            }
         }
-    }
-}
+    } 
+
