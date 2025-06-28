@@ -101,34 +101,16 @@ namespace IdentityApi.Controllers
             });
         }
 
-
-            //private string GenerateToken(string getEmail)
-            //{
-            //    var key = Encoding.UTF8.GetBytes(config["Authentication:Key"]!);
-            //    var securityKey = new SymmetricSecurityKey(key);
-            //    var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            //    var claims = new[] { new Claim(ClaimTypes.Email, getEmail!) };
-
-            //    var token = new JwtSecurityToken(
-            //        issuer: config["Authentication:Issuer"],
-            //        audience: config["Authentication:Audience"],
-            //        claims: claims,
-            //        expires: null,
-            //        signingCredentials: credential);
-
-            //    return new JwtSecurityTokenHandler().WriteToken(token);
-            //}
-
-            //api/account/register/{email}/{password}
-            [HttpPost("register")]
-            public async Task<IActionResult> Register([FromBody] RegisterModel model)
-            {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                    return Ok("Utilisateur créé !");
-                return BadRequest(result.Errors);
-            }
+        //api/account/register/{email}/{password}
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        {
+            var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+                return Ok("Utilisateur créé !");
+            return BadRequest(result.Errors);
         }
-    } 
+    }
+} 
 

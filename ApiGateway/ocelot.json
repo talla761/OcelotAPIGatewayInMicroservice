@@ -1,5 +1,6 @@
 {
   "Routes": [
+    //Login
     {
       "DownstreamPathTemplate": "/api/account/login",
       "DownstreamScheme": "http",
@@ -12,6 +13,7 @@
       "UpstreamPathTemplate": "/api/account/login",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
+    //Register
     {
       "DownstreamPathTemplate": "/api/account/register",
       "DownstreamScheme": "http",
@@ -24,6 +26,7 @@
       "UpstreamPathTemplate": "/api/account/register",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
+    //GetAll Patient
     {
       "DownstreamPathTemplate": "/api/patient",
       "DownstreamScheme": "http",
@@ -35,6 +38,23 @@
       ],
       "UpstreamPathTemplate": "/api/patient",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    //Get {id} Patient
+    {
+      "DownstreamPathTemplate": "/api/patient/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/patient/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
