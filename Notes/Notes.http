@@ -1,0 +1,18 @@
+@Notes_HostAddress = http://localhost:7003
+
+GET {{Notes_HostAddress}}/api/notes
+Accept: application/json
+
+###
+
+GET {{Notes_HostAddress}}/api/notes
+
+###
+
+GET {{Notes_HostAddress}}/api/notes
+
+###
+
+GET {{Notes_HostAddress}}/api/notes
+
+###
