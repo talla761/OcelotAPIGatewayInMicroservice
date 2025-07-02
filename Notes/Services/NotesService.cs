@@ -35,5 +35,9 @@ namespace Notes.Services
 
         public async Task RemoveAsync(string id) =>
             await _notesCollection.DeleteOneAsync(x => x.Id == id);
+
+        public async Task<List<Note>> GetByPatientIdAsync(int patientId) =>
+            await _notesCollection.Find(n => n.patId == patientId).ToListAsync();
+
     }
 }

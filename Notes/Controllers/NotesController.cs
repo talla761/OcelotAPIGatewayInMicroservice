@@ -71,5 +71,19 @@ namespace Notes.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("patient/{patientId}")]
+        public async Task<ActionResult<List<Note>>> GetByPatientId(int patientId)
+        {
+            var notes = await _notesService.GetByPatientIdAsync(patientId);
+
+            if (notes == null || !notes.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(notes);
+        }
+
     }
 }
