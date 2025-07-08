@@ -1,0 +1,40 @@
+﻿@page
+ 
+@model FrontEndApp.Pages.Patients.IndexModel
+ @using Patient.Models
+
+@{
+    ViewData["Title"] = "Liste des patients";
+}
+
+<h1>Liste des patients</h1>
+
+<a class="btn btn-primary mb-3" asp-page="/Patients/Create">➕ Ajouter un patient</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Genre</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var patient in Model.Patients)
+        {
+            <tr>
+                <td>@patient.Prenom</td>
+                <td>@patient.Nom</td>
+                <td>@patient.DateNaissance.ToShortDateString()</td>
+                <td>@patient.Genre</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-page="/Patients/Details" asp-route-id="@patient.PatientId">👁 Voir</a>
+                    <a class="btn btn-warning btn-sm" asp-page="/Patients/Edit" asp-route-id="@patient.PatientId">✏️ Modifier</a>
+                    <a class="btn btn-danger btn-sm" asp-page="/Patients/Delete" asp-route-id="@patient.PatientId">🗑 Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

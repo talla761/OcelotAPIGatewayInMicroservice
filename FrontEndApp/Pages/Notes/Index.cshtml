@@ -1,0 +1,33 @@
+﻿@page
+@model FrontEndApp.Pages.Notes.Index
+@{
+    ViewData["Title"] = "Liste des notes";
+}
+
+<h1>Liste des notes</h1>
+
+<a class="btn btn-primary mb-3" asp-page="/Notes/Create">➕ Ajouter une note</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>Contenu (aperçu)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var note in Model.Notes)
+        {
+            <tr>
+                <td>@note.patId</td>
+                <td>@(note.content.Length > 40 ? note.content[..40] + "…" : note.content)</td>
+                <td>
+                    <a asp-page="/Notes/Details" asp-route-id="@note.Id" class="btn btn-info btn-sm">Voir</a>
+                    <a asp-page="/Notes/Edit" asp-route-id="@note.Id" class="btn btn-warning btn-sm">Modifier</a>
+                    <a asp-page="/Notes/Delete" asp-route-id="@note.Id" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,26 @@
+﻿@page
+@model FrontEndApp.Pages.Notes.Create
+@{
+    ViewData["Title"] = "Ajouter une note";
+}
+
+<h2>Ajouter une nouvelle note</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Note.patId" class="form-label">ID du patient</label>
+        <input asp-for="Note.patId" class="form-control" />
+        <span asp-validation-for="Note.patId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Note.content" class="form-label">Contenu de la note</label>
+        <textarea asp-for="Note.content" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Note.content" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a asp-page="Index" class="btn btn-secondary">Annuler</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

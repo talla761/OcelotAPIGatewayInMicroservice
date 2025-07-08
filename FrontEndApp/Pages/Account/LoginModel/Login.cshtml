@@ -1,0 +1,21 @@
+﻿@page
+@model FrontEndApp.Pages.Account.Login
+
+<h2>Connexion</h2>
+
+<form method="post">
+    <div>
+        <label>Email:</label>
+        <input asp-for="Email" />
+    </div>
+    <div>
+        <label>Mot de passe:</label>
+        <input asp-for="Password" type="password" />
+    </div>
+    <button type="submit">Se connecter</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div style="color:red">@Model.ErrorMessage</div>
+}

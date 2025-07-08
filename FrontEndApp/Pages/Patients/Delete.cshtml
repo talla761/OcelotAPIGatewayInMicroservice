@@ -1,0 +1,30 @@
+﻿@page "{id:int}"
+@model FrontEndApp.Pages.Patients.Delete
+@{
+    ViewData["Title"] = "Supprimer un patient";
+}
+
+<h1>Supprimer un patient</h1>
+
+@if (Model.Patient is null)
+{
+    <div class="alert alert-danger">Patient introuvable</div>
+    <a asp-page="./Index" class="btn btn-secondary">Retour</a>
+}
+else
+{
+    <div class="alert alert-warning">
+        <h5 class="mb-3">Voulez‑vous vraiment supprimer ?</h5>
+        <ul>
+            <li><strong>Nom :</strong> @Model.Patient.Nom</li>
+            <li><strong>Prénom :</strong> @Model.Patient.Prenom</li>
+            <li><strong>Date de naissance :</strong> @Model.Patient.DateNaissance.ToString("yyyy-MM-dd")</li>
+        </ul>
+
+        <form method="post">
+            <input type="hidden" asp-for="Patient.PatientId" />
+            <button type="submit" class="btn btn-danger">🗑 Confirmer la suppression</button>
+            <a asp-page="./Index" class="btn btn-secondary ms-2">Annuler</a>
+        </form>
+    </div>
+}

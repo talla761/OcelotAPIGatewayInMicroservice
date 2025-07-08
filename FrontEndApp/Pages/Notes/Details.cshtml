@@ -1,0 +1,26 @@
+﻿@page "{id}"
+@model FrontEndApp.Pages.Notes.Details
+@{
+    ViewData["Title"] = "Détails de la note";
+}
+
+<h2>Détails de la note</h2>
+
+@if (Model.Note == null)
+{
+    <div class="alert alert-danger">Note introuvable.</div>
+    <a asp-page="/Notes/Index" class="btn btn-secondary">Retour</a>
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <p><strong>ID :</strong> @Model.Note.Id</p>
+            <p><strong>Patient ID :</strong> @Model.Note.patId</p>
+            <p><strong>Contenu :</strong></p>
+            <pre class="border p-2">@Model.Note.content</pre>
+        </div>
+    </div>
+
+    <a asp-page="/Notes/Index" class="btn btn-primary mt-3">Retour à la liste</a>
+}

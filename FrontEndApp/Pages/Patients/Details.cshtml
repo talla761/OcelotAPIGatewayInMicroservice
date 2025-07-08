@@ -1,0 +1,26 @@
+﻿@page "{id:int}"
+@model FrontEndApp.Pages.Patients.Details
+@{
+    ViewData["Title"] = "Détails du patient";
+}
+
+<h1>Détails du patient</h1>
+
+@if (Model.Patient != null)
+{
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Patient.Prenom @Model.Patient.Nom</h5>
+            <p class="card-text"><strong>Date de naissance :</strong> @Model.Patient.DateNaissance.ToString("yyyy-MM-dd")</p>
+            <p class="card-text"><strong>Genre :</strong> @Model.Patient.Genre</p>
+            <p class="card-text"><strong>Adresse :</strong> @Model.Patient.AdressePostale</p>
+            <p class="card-text"><strong>Téléphone :</strong> @Model.Patient.NumeroTelephone</p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">Patient non trouvé.</div>
+}
+
+<a asp-page="./Index" class="btn btn-secondary mt-3">Retour à la liste</a>

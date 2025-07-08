@@ -1,0 +1,55 @@
+﻿@page
+@model FrontEndApp.Pages.Patients.Create
+@{
+    ViewData["Title"] = "Ajouter un patient";
+}
+
+<h1>Ajouter un patient</h1>
+
+<form method="post" class="mt-3">
+    <div class="mb-3">
+        <label asp-for="NewPatient.Prenom" class="form-label"></label>
+        <input asp-for="NewPatient.Prenom" class="form-control" />
+        <span asp-validation-for="NewPatient.Prenom" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewPatient.Nom" class="form-label"></label>
+        <input asp-for="NewPatient.Nom" class="form-control" />
+        <span asp-validation-for="NewPatient.Nom" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewPatient.DateNaissance" class="form-label"></label>
+        <input asp-for="NewPatient.DateNaissance" type="date" class="form-control" />
+        <span asp-validation-for="NewPatient.DateNaissance" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewPatient.Genre" class="form-label"></label>
+        <select asp-for="NewPatient.Genre" class="form-select">
+            <option value="">-- Choisir --</option>
+            <option>H</option>
+            <option>F</option>
+        </select>
+        <span asp-validation-for="NewPatient.Genre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewPatient.AdressePostale" class="form-label"></label>
+        <input asp-for="NewPatient.AdressePostale" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NewPatient.NumeroTelephone" class="form-label"></label>
+        <input asp-for="NewPatient.NumeroTelephone" class="form-control" />
+        <span asp-validation-for="NewPatient.NumeroTelephone" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <a asp-page="./Index" class="btn btn-secondary ms-2">Annuler</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
