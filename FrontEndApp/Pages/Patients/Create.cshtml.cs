@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using PatientModel = Patient.Models.Patient;
+using FrontEndApp.Models;
 
 namespace FrontEndApp.Pages.Patients
 {
@@ -18,7 +18,7 @@ namespace FrontEndApp.Pages.Patients
         }
 
         [BindProperty]
-        public PatientModel NewPatient { get; set; } = new();
+        public Patient NewPatient { get; set; } = new();
 
         public void OnGet() { }
 

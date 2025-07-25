@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using Patient.Models;
+using FrontEndApp.Models;
 
 namespace FrontEndApp.Pages.Patients
 {
@@ -16,7 +16,7 @@ namespace FrontEndApp.Pages.Patients
             _configuration = configuration;
         }
 
-        public List<Patient.Models.Patient> Patients { get; set; } = new();
+        public List<Patient> Patients { get; set; } = new();
 
         public async Task OnGetAsync()
         {
@@ -29,7 +29,7 @@ namespace FrontEndApp.Pages.Patients
             var response = await client.GetAsync(_configuration["Services:GatewayBaseUrl"] + "/api/patient");
             if (response.IsSuccessStatusCode)
             {
-                Patients = await response.Content.ReadFromJsonAsync<List<Patient.Models.Patient>>() ?? new();
+                Patients = await response.Content.ReadFromJsonAsync<List<Patient>>() ?? new();
             }
         }
     }

@@ -26,7 +26,6 @@
       "UpstreamPathTemplate": "/api/account/register",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
-    //GetAll Patient
     {
       "DownstreamPathTemplate": "/api/patient",
       "DownstreamScheme": "http",
@@ -37,13 +36,8 @@
         }
       ],
       "UpstreamPathTemplate": "/api/patient",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
-    //Get {id} Patient
     {
       "DownstreamPathTemplate": "/api/patient/{id}",
       "DownstreamScheme": "http",
@@ -54,13 +48,8 @@
         }
       ],
       "UpstreamPathTemplate": "/api/patient/{id}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     },
-    //GetAll Notes
     {
       "DownstreamPathTemplate": "/api/notes",
       "DownstreamScheme": "http",
@@ -71,13 +60,8 @@
         }
       ],
       "UpstreamPathTemplate": "/api/notes",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
-    //Get {id} Notes
     {
       "DownstreamPathTemplate": "/api/notes/{id}",
       "DownstreamScheme": "http",
@@ -88,11 +72,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/notes/{id}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/notes/patient/{patientId}",
@@ -104,13 +84,8 @@
         }
       ],
       "UpstreamPathTemplate": "/api/notes/patient/{patientId}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET" ]
     },
-    //Get {id} Assessment
     {
       "DownstreamPathTemplate": "/api/assessment/{patientId}",
       "DownstreamScheme": "http",
@@ -121,11 +96,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/assessment/{patientId}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/assessment",
@@ -137,11 +108,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/assessment",
-      "UpstreamHttpMethod": [ "GET" ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      }
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ],
   "GlobalConfiguration": {

@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Patient.Data;
 using Microsoft.IdentityModel.Tokens;
-using SharedLibrary;
 using System.Text;
 
 

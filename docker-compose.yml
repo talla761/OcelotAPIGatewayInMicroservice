@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  patient-api:
+    build:
+      context: .
+      dockerfile: Patient/Dockerfile.txt
+    ports:
+      - "7002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Jwt__Key=ThisIsA32CharactersLongSecretKey!!
+      - Jwt__Issuer=http://localhost:7001
+      - Jwt__Audience=http://localhost:7001
+    networks:
+      - app-network
+
+  notes-api:
+    build:
+      context: .
+      dockerfile: Notes/Dockerfile.txt
+    ports:
+      - "7003:80"
+    depends_on:
+      - mongo
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MongoDbSettings__ConnectionString=mongodb://mongo:27017
+      - MongoDbSettings__DatabaseName=NotesDb
+      - Jwt__Key=ThisIsA32CharactersLongSecretKey!!
+      - Jwt__Issuer=http://localhost:7001
+      - Jwt__Audience=http://localhost:7001
+    networks:
+      - app-network
+
+  riskassessment-api:
+    build:
+      context: .
+      dockerfile: RiskAssessment/Dockerfile.txt
+    ports:
+      - "7004:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Jwt__Key=ThisIsA32CharactersLongSecretKey!!
+      - Jwt__Issuer=http://localhost:7001
+      - Jwt__Audience=http://localhost:7001
+    networks:
+      - app-network
+
+  identity-api:
+    build:
+      context: .
+      dockerfile: Identity/Dockerfile.txt
+    ports:
+      - "7001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Jwt__Key=ThisIsA32CharactersLongSecretKey!!
+      - Jwt__Issuer=http://localhost:7001
+      - Jwt__Audience=http://localhost:7001
+    networks:
+      - app-network
+
+  gateway:
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile.txt
+    ports:
+      - "7000"
+    depends_on:
+      - patient-api
+      - notes-api
+      - riskassessment-api
+      - identity-api
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: FrontEndApp/Dockerfile.txt
+    ports:
+      - "7005:80"
+    depends_on:
+      - gateway
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:
+
+# networks:
+#  app-network

@@ -9,18 +9,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityApi", "Identity\Ide
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{9A185BA9-CE69-4C7B-BDF5-6BFC25162F1D}"
 	ProjectSection(ProjectDependencies) = postProject
-		{0BA4E796-60ED-4F15-8DA6-FC0079861134} = {0BA4E796-60ED-4F15-8DA6-FC0079861134}
 		{B0F0D232-8422-4116-9575-D3A788A22B1D} = {B0F0D232-8422-4116-9575-D3A788A22B1D}
 		{C22F4164-EA80-46EE-BAF1-5DF5D92C8C11} = {C22F4164-EA80-46EE-BAF1-5DF5D92C8C11}
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{0BA4E796-60ED-4F15-8DA6-FC0079861134}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notes", "Notes\Notes.csproj", "{92D4822C-B389-4A79-B934-64DF31F92816}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RiskAssessment", "RiskAssessment\RiskAssessment.csproj", "{099592BB-0A56-4F20-B81E-2C3C6D5A57A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontEndApp", "FrontEndApp\FrontEndApp.csproj", "{00F427A2-3A1E-4FBA-A056-EE3CF9502BB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5FA11DC-C47F-47D4-BBD1-6DBECB7AF87B}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,10 +42,6 @@ Global
 		{9A185BA9-CE69-4C7B-BDF5-6BFC25162F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A185BA9-CE69-4C7B-BDF5-6BFC25162F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A185BA9-CE69-4C7B-BDF5-6BFC25162F1D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BA4E796-60ED-4F15-8DA6-FC0079861134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BA4E796-60ED-4F15-8DA6-FC0079861134}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BA4E796-60ED-4F15-8DA6-FC0079861134}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BA4E796-60ED-4F15-8DA6-FC0079861134}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92D4822C-B389-4A79-B934-64DF31F92816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92D4822C-B389-4A79-B934-64DF31F92816}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92D4822C-B389-4A79-B934-64DF31F92816}.Release|Any CPU.ActiveCfg = Release|Any CPU

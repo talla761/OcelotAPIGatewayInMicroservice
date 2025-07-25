@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using PatientModel = Patient.Models.Patient;
+using FrontEndApp.Models;
 
 namespace FrontEndApp.Pages.Patients
 {
@@ -18,7 +18,7 @@ namespace FrontEndApp.Pages.Patients
         }
 
         [BindProperty]
-        public PatientModel? Patient { get; set; }
+        public Patient? Patient { get; set; }
 
         // GET  ? affiche la fiche et demande confirmation
         public async Task<IActionResult> OnGetAsync(int id)
@@ -37,7 +37,7 @@ namespace FrontEndApp.Pages.Patients
             if (!resp.IsSuccessStatusCode)
                 return NotFound();
 
-            Patient = await resp.Content.ReadFromJsonAsync<PatientModel>();
+            Patient = await resp.Content.ReadFromJsonAsync<Patient>();
             return Page();
         }
 

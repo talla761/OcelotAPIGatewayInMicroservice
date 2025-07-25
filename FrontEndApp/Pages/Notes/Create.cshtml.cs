@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text;
 using System.Net.Http.Json;
-using Notes.Models;
+using FrontEndApp.Models;
 
 namespace FrontEndApp.Pages.Notes
 {

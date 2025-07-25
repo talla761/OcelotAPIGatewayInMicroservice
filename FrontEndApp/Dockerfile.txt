@@ -1,0 +1,28 @@
+﻿# Dockerfile pour un microservice ASP.NET
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copie le fichier .csproj et restaure les dépendances
+COPY ["FrontEndApp/FrontEndApp.csproj", "FrontEndApp/"]
+RUN dotnet restore "FrontEndApp/FrontEndApp.csproj"
+
+# Copie tout le projet et build
+COPY FrontEndApp/. ./FrontEndApp/
+
+WORKDIR "/src/FrontEndApp"
+RUN dotnet build "FrontEndApp.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "FrontEndApp.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "FrontEndApp.dll"]
+
+
+

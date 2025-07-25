@@ -44,28 +44,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
 
-                        @{
-                            var isAuthenticated = !string.IsNullOrEmpty(HttpContextAccessor.HttpContext?.Session.GetString("JwtToken"));
-                        }
-
                         <li class="nav-item ms-auto">
-                            @if (isAuthenticated)
-                            {
-                                <form method="post" asp-page="/Account/LoginModel/Logout" class="d-inline">
-                                    <button type="submit" class="btn btn-danger nav-link text-white border rounded px-3 py-2"
-                                            style="transition: background-color 0.3s, color 0.3s;">
-                                        Déconnexion
-                                    </button>
-                                </form>
-                            }
-                            else
-                            {
-                                <a class="btn btn-outline-primary nav-link text-dark border rounded px-3 py-2"
-                                   asp-page="/Account/LoginModel/Login"
-                                   style="transition: background-color 0.3s, color 0.3s;">
-                                    Connexion
-                                </a>
-                            }
+                            <a class="btn btn-outline-primary nav-link text-dark border rounded px-3 py-2"
+                                asp-page="/Account/LoginModel/Login"
+                                style="transition: background-color 0.3s, color 0.3s;">
+                                Connexion
+                            </a>
                         </li>
 
                     </ul>

@@ -1,0 +1,23 @@
+﻿# Utilise l’image .NET 8 SDK pour la phase de build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copie les fichiers projet et restaure les dépendances
+COPY Notes/*.csproj ./Notes/
+RUN dotnet restore ./Notes/Notes.csproj
+
+# Copie le reste de l'application et compile
+COPY . .
+WORKDIR /src/Notes
+RUN dotnet publish -c Release -o /app/publish --no-restore
+
+# Utilise l’image runtime .NET 8 pour exécuter l’application
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+
+# Expose le port HTTP
+EXPOSE 80
+
+# Commande pour lancer l’application
+ENTRYPOINT ["dotnet", "Notes.dll"]

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using NotesModel = Notes.Models.Note;   // adapte si ton namespace diffère
+using FrontEndApp.Models;
 
 namespace FrontEndApp.Pages.Notes
 {
@@ -17,7 +17,7 @@ namespace FrontEndApp.Pages.Notes
             _cfg = cfg;
         }
 
-        public List<NotesModel> Notes { get; set; } = new();
+        public List<Note> Notes { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -39,7 +39,7 @@ namespace FrontEndApp.Pages.Notes
                 return Page();
             }
 
-            Notes = await resp.Content.ReadFromJsonAsync<List<NotesModel>>() ?? new();
+            Notes = await resp.Content.ReadFromJsonAsync<List<Note>>() ?? new();
             return Page();
         }
     }

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using PatientModel = Patient.Models.Patient;
+using FrontEndApp.Models;
 
 namespace FrontEndApp.Pages.Patients
 {
@@ -17,7 +17,7 @@ namespace FrontEndApp.Pages.Patients
             _configuration = configuration;
         }
 
-        public PatientModel? Patient { get; set; }
+        public Patient? Patient { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -34,7 +34,7 @@ namespace FrontEndApp.Pages.Patients
 
             if (response.IsSuccessStatusCode)
             {
-                Patient = await response.Content.ReadFromJsonAsync<PatientModel>();
+                Patient = await response.Content.ReadFromJsonAsync<Patient>();
                 return Page();
             }
 
