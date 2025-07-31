@@ -8,8 +8,10 @@
 
 <form method="post">
     <div class="mb-3">
-        <label asp-for="Note.patId" class="form-label">ID du patient</label>
-        <input asp-for="Note.patId" class="form-control" />
+        <label for="Note_patId" class="form-label">Patient</label>
+        <select asp-for="Note.patId" class="form-select" asp-items="Model.PatientsSelectList">
+            <option value="">-- Sélectionner un patient --</option>
+        </select>
         <span asp-validation-for="Note.patId" class="text-danger"></span>
     </div>
     <div class="mb-3">

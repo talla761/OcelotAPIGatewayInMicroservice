@@ -23,9 +23,9 @@
                 <td>@note.patId</td>
                 <td>@(note.content.Length > 40 ? note.content[..40] + "…" : note.content)</td>
                 <td>
-                    <a asp-page="/Notes/Details" asp-route-id="@note.Id" class="btn btn-info btn-sm">Voir</a>
-                    <a asp-page="/Notes/Edit" asp-route-id="@note.Id" class="btn btn-warning btn-sm">Modifier</a>
-                    <a asp-page="/Notes/Delete" asp-route-id="@note.Id" class="btn btn-danger btn-sm">Supprimer</a>
+                    <a asp-page="/Notes/Details" asp-route-id="@note.Id" class="btn btn-info btn-sm">👁 Voir</a>
+                    <a asp-page="/Notes/Edit" asp-route-id="@note.Id" class="btn btn-warning btn-sm">✏️ Modifier</a>
+                    <a asp-page="/Notes/Delete" asp-route-id="@note.Id" class="btn btn-danger btn-sm">🗑 Supprimer</a>
                 </td>
             </tr>
         }

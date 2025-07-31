@@ -17,6 +17,34 @@
             <p class="card-text"><strong>Téléphone :</strong> @Model.Patient.NumeroTelephone</p>
         </div>
     </div>
+
+    <h4>Notes médicales</h4>
+
+    @if (Model.Notes is null || Model.Notes.Count == 0)
+    {
+        <p><em>Aucune note trouvée.</em></p>
+    }
+    else
+    {
+        <ul>
+            @foreach (var note in Model.Notes)
+            {
+                <li>
+                    <strong>@note.CreatedAt.ToString("dd MMM yyyy")</strong> : @note.Content
+                </li>
+            }
+        </ul>
+    }
+
+
+    @if (!string.IsNullOrEmpty(Model.RiskLevel))
+    {
+        <h4 class="mt-4 text-danger">Évaluation du risque de diabète</h4>
+        <div class="alert alert-warning">
+            <strong>Niveau de risque :</strong> @Model.RiskLevel
+        </div>
+    }
+
 }
 else
 {

@@ -35,6 +35,12 @@ namespace Notes.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Note newNote)
         {
+            // Si la date n'est pas définie, on la met à maintenant
+            if (newNote.CreatedAt == default)
+            {
+                newNote.CreatedAt = DateTime.Now;
+            }
+
             await _notesService.CreateAsync(newNote);
 
             return CreatedAtAction(nameof(Get), new { id = newNote.Id }, newNote);

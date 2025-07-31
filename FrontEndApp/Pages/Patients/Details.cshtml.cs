@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using FrontEndApp.Models;
+using FrontEndApp.Dtos;
 
 namespace FrontEndApp.Pages.Patients
 {
@@ -17,28 +17,42 @@ namespace FrontEndApp.Pages.Patients
             _configuration = configuration;
         }
 
-        public Patient? Patient { get; set; }
+        public PatientDto? Patient { get; set; }
+        public List<NoteDto>? Notes { get; set; }
+
+        public string? RiskLevel { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
             var token = HttpContext.Session.GetString("JwtToken");
             if (string.IsNullOrEmpty(token))
-                return RedirectToPage("/Account/Login");
+                return RedirectToPage("Account/Login");
 
             var client = _httpClientFactory.CreateClient();
-            client.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", token);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var gateway = _configuration["Services:GatewayBaseUrl"];
-            var response = await client.GetAsync($"{gateway}/api/patient/{id}");
 
-            if (response.IsSuccessStatusCode)
+            // 1. Get Patient
+            var response = await client.GetAsync($"{gateway}/api/patient/{id}");
+            if (!response.IsSuccessStatusCode)
+                return NotFound();
+
+            Patient = await response.Content.ReadFromJsonAsync<PatientDto>();
+
+            // 2. Get Assessment
+            var riskResponse = await client.GetAsync($"{gateway}/api/assessment/{id}");
+            if (riskResponse.IsSuccessStatusCode)
+                RiskLevel = await riskResponse.Content.ReadAsStringAsync();
+
+            // 3. Get Notes
+            var notesResponse = await client.GetAsync($"{gateway}/api/notes/patient/{id}");
+            if (notesResponse.IsSuccessStatusCode)
             {
-                Patient = await response.Content.ReadFromJsonAsync<Patient>();
-                return Page();
+                Notes = await notesResponse.Content.ReadFromJsonAsync<List<NoteDto>>();
             }
 
-            return NotFound();
+            return Page();
         }
     }
 }

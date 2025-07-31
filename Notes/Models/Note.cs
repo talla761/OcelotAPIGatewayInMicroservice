@@ -11,6 +11,8 @@ namespace Notes.Models
         public string? Id { get; set; }
         public int patId { get; set; }
         public string patient { get; set; } = "";
-        public string content { get; set; } = ""; 
+        public string content { get; set; } = "";
+        public DateTime CreatedAt { get; set; }
+
     }
 }

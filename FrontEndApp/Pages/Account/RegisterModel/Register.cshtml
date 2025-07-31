@@ -1,0 +1,40 @@
+﻿@page
+@model FrontEndApp.Pages.Account.RegisterModel.Register
+
+@{
+    ViewData["Title"] = "Inscription";
+}
+
+<h2>Inscription</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Username" class="form-label">Nom d'utilisateur</label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label">Mot de passe</label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ConfirmPassword" class="form-label">Confirmer le mot de passe</label>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Créer le compte</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

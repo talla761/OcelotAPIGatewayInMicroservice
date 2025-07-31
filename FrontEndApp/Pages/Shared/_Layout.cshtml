@@ -44,10 +44,16 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
 
-                        <li class="nav-item ms-auto">
-                            <a class="btn btn-outline-primary nav-link text-dark border rounded px-3 py-2"
-                                asp-page="/Account/LoginModel/Login"
-                                style="transition: background-color 0.3s, color 0.3s;">
+                        <!-- Conteneur pour les boutons alignés à droite -->
+                        <li class="nav-item ms-auto d-flex gap-2">
+                            <a class="btn btn-outline-success text-dark border rounded px-3 py-2"
+                               asp-page="/Account/RegisterModel/Register"
+                               style="transition: background-color 0.3s, color 0.3s;">
+                                Inscription
+                            </a>
+                            <a class="btn btn-outline-primary text-dark border rounded px-3 py-2"
+                               asp-page="/Account/LoginModel/Login"
+                               style="transition: background-color 0.3s, color 0.3s;">
                                 Connexion
                             </a>
                         </li>
