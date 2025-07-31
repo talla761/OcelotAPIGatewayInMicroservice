@@ -24,8 +24,9 @@ git clone https://github.com/talla761/OcelotAPIGatewayInMicroservice.git
 cd OcelotAPIGatewayInMicroservice
 
 3. 🛠️ Configuration des bases de données
-SQL Server (pour PatientService) / Il existe une classe Dataseeder qui ajouter les 4 patients de tests si base de donnée est vide au lancement de l'application
+Merci de prendre en considération l'ajout des informations des patients et notes depuis les fichiers excels remis dans le projet  / Il existe une classe Dataseeder qui ajouter les 4 patients de tests si base de donnée est vide au lancement de l'application
 
+SQL Server (pour PatientService)
 Configuration dans appsettings.json du service :
 
 {
